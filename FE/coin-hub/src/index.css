@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+.custom-table .ant-table {
+    border: none;
+}
+
+.custom-table .ant-table-thead>tr>th {
+    background: transparent;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.custom-table .ant-table-tbody>tr>td {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.custom-table .ant-table-container {
+    border: none;
+}
