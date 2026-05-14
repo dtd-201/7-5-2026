@@ -1,0 +1,42 @@
+services:
+  dev-frontend:
+    build: .
+    ports:
+      - "3000:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    profiles: ["dev"]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - react-net
+
+  prod-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: react-prod
+    ports:
+      - "80:80"
+    profiles: ["prod"]
+    networks:
+      - react-net
+
+  stg-frontend:
+    build: .
+    container_name: react-stg
+    ports:
+      - "3001:5173"
+    environment:
+      - VITE_ENV=staging
+    profiles: ["stg"]
+    networks:
+      - react-net
+
+networks:
+  react-net:

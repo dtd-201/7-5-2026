@@ -12,6 +12,7 @@ import Watchlist from "./pages/Watchlist";
 const { Content: AntContent, Footer: AntFooter } = Layout;
 
 function App() {
+  const env = import.meta.env.VITE_ENV;
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
@@ -20,6 +21,7 @@ function App() {
         algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
       }}
     >
+      {env === "staging" && <div>STAGING MODE</div>}
       <AntdApp>
         <Layout style={{ minHeight: "100vh" }}>
           <Header isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
